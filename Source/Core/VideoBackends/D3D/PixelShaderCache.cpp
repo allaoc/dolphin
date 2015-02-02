@@ -61,7 +61,7 @@ const char color_copy_program_code[] = {
 	"}\n"
 };
 
-// Anaglyph Red-Cyan shader based on Dubois algorithm
+// Anaglyph Green-Magenta shader based on Dubois algorithm
 // Constants taken from the paper:
 // "Conversion of a Stereo Pair to Anaglyph with
 // the Least-Squares Projection Method"
@@ -75,12 +75,12 @@ const char anaglyph_program_code[] = {
 	"in float3 uv0 : TEXCOORD0){\n"
 	"float4 c0 = Tex0.Sample(samp0, float3(uv0.xy, 0.0));\n"
 	"float4 c1 = Tex0.Sample(samp0, float3(uv0.xy, 1.0));\n"
-	"float3x3 l = float3x3( 0.437, 0.449, 0.164,\n"
-	"                      -0.062,-0.062,-0.024,\n"
-	"                      -0.048,-0.050,-0.017);\n"
-	"float3x3 r = float3x3(-0.011,-0.032,-0.007,\n"
-	"                       0.377, 0.761, 0.009,\n"
-	"                      -0.026,-0.093, 1.234);\n"
+	"float3x3 l = float3x3(-0.062,-0.158,-0.039,\n"
+	"	              0.284,0.668,0.143,\n"
+	"	              -0.015,-0.027,0.021);\n"
+	"float3x3 r = float3x3(0.529, 0.705, 0.024,\n"
+	"	               -0.016,-0.015,-0.065,\n"
+	"	              0.009,0.075, 0.937);\n"
 	"ocol0 = float4(mul(l, c0.rgb) + mul(r, c1.rgb), c0.a);\n"
 	"}\n"
 };
